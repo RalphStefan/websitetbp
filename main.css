@@ -1,0 +1,167 @@
+h1 {
+    color:black;
+    font:Arial;
+    }
+
+h2 {
+    color:black;
+    font:Arial;
+    }
+
+h3 {
+    color:black;
+    font:Arial;
+    }
+
+p {
+    color:black;
+    font:calibri;
+    }
+
+body {
+    color:black;
+    background-color: lightblue;
+    font:monaco;
+}
+
+img {border-width: 3px;
+border-style: solid;
+border-color: lightblue;}
+
+center {
+  text-align: center;
+  border: 3px;
+}
+
+header {
+    background-color: white;
+    width: 600px;
+    height: 100px;
+    text-align:center;
+   margin-left: 250px;
+}
+
+nav {
+ background-color: white;
+    width: 600px;
+    height: 75px;
+    text-align: center;
+    margin-left: 250px;
+}
+
+article {
+   background-color: white;
+   width: 600px;
+    height: 400px;
+   text-align: center;
+    margin-left: 250px;
+}
+
+#afbeelding {
+   width: 500px;
+   height: 200px;
+    margin-top: 20px;
+    margin-left: 250px;
+    margin-bottom: 310px;
+}
+
+	#sidebar {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  height: 481px;
+  float: right;
+  margin-right: 220px;
+  margin-top: -507px 
+}
+
+footer {
+    background-color: white;
+     width: 600px;
+    height: 100px;
+    text-align:center;
+    margin-left: 250px; 
+}h1 {
+    color:black;
+    font:Arial;
+    }
+
+h2 {
+    color:black;
+    font:Arial;
+    }
+
+h3 {
+    color:black;
+    font:Arial;
+    }
+
+p {
+    color:black;
+    font:calibri;
+    }
+
+body {
+    color:black;
+    background-color: lightblue;
+    font:monaco;
+}
+
+img {border-width: 3px;
+border-style: solid;
+border-color: lightblue;}
+
+center {
+  text-align: center;
+  border: 3px;
+}
+
+header {
+    background-color: white;
+    width: 600px;
+    height: 100px;
+    text-align:center;
+   margin-left: 250px;
+}
+
+nav {
+ background-color: white;
+    width: 600px;
+    height: 75px;
+    text-align: center;
+    margin-left: 250px;
+}
+
+article {
+   background-color: white;
+   width: 600px;
+    height: 400px;
+   text-align: center;
+    margin-left: 250px;
+}
+
+#afbeelding {
+   width: 500px;
+   height: 200px;
+    margin-top: 20px;
+    margin-left: 250px;
+    margin-bottom: 310px;
+}
+
+	#sidebar {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  height: 481px;
+  float: right;
+  margin-right: 220px;
+  margin-top: -507px 
+}
+
+footer {
+    background-color: white;
+     width: 600px;
+    height: 100px;
+    text-align:center;
+    margin-left: 250px; 
+}
