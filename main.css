@@ -135,12 +135,15 @@ footer {
 }
 /* In main.css, voeg deze styles toe */
 .video-page {
-    background: url('achtergrond/achtergrond1.jpg') no-repeat center center fixed;
+    background: url('./achtergrond/achtergrond1.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
     background-size: cover;
     min-height: 100vh;
 }
-.hoofdpagina{
-    background: url('achtergrond/achtergrond2.jpg') no-repeat center center fixed;
+
+.hoofdpagina {
+    background: url('./achtergrond/achtergrond2.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
     background-size: cover;
     min-height: 100vh;
 }
