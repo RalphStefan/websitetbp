@@ -1,153 +1,192 @@
-/* Reset & Variables */
-:root {
-    --space-dark: #0a192f;
-    --space-light: #172a45;
-    --star-color: #64ffda;
-    --text-primary: #ffffff;
-    --text-secondary: #8892b0;
-    --glass: rgba(255, 255, 255, 0.1); /* Verhoogd voor betere zichtbaarheid */
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --blur: 10px;
-    --transition: all 0.3s ease; /* Vereenvoudigd voor betere browser support */
-  }
-  
-  /* Base Styles */
-  * {
+/* Reset en basis stijlen */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
-    font-family: -apple-system, system-ui, sans-serif;
+}
+
+:root {
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e94560;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: var(--text-primary);
-    min-height: 100vh;
-    background-color: var(--space-dark); /* Fallback */
-  }
-  
-  /* Gemeenschappelijke achtergrond eigenschappen */
-  .glass-common {
-    background: var(--glass);
-    -webkit-backdrop-filter: blur(var(--blur));
-    backdrop-filter: blur(var(--blur));
+}
+
+/* Header en navigatie */
+.main-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    transition: var(--transition);
-  }
-  
-  /* Pagina specifieke achtergronden */
-  .video-page {
-    background: url('../achtergrond/achtergrond1.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-  }
-  
-  body:not(.video-page) {
-    background: url('../achtergrond/achtergrond2.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-  }
-  
-  /* Headers & Navigation */
-  .main-header {
-    background: var(--glass);
-    -webkit-backdrop-filter: blur(var(--blur));
-    backdrop-filter: blur(var(--blur));
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    transition: var(--transition);
     padding: 2rem;
     margin: 2rem auto;
-    max-width: min(1200px, 90vw);
+    max-width: 1200px;
     text-align: center;
-  }
-  
-  .main-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  
-  /* Content & Video Grid */
-  main {
-    max-width: min(1200px, 90vw);
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  .video-grid {
+    padding: 0 2rem;
+}
+
+/* Video grid sectie */
+.video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 2rem 0;
-  }
-  
-  .video-container {
-    background: var(--glass);
-    -webkit-backdrop-filter: blur(var(--blur));
-    backdrop-filter: blur(var(--blur));
+}
+
+.video-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    transition: var(--transition);
+    border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease;
-  }
-  
-  .video-container:hover {
+}
+
+.video-container:hover {
     transform: translateY(-5px);
-  }
-  
-  video {
+}
+
+video {
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 15px 15px 0 0;
-  }
-  
-  /* Text Styles */
-  h1 {
-    font-size: clamp(1.5rem, 5vw, 3rem);
-    margin-bottom: 1rem;
-    color: var(--star-color);
-  }
-  
-  h2, h3 {
-    color: var(--star-color);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-description {
+    padding: 1.5rem;
+}
+
+.video-description h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-  }
-  
-  /* Links & Buttons */
-  .video-link, .back-button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 2rem;
-    color: var(--text-primary);
+}
+
+/* Text styling */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--text-color), #fff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Footer */
+footer {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.footer-nav a {
+    color: var(--text-color);
     text-decoration: none;
-    transition: var(--transition);
-  }
-  
-  .video-link:hover, .back-button:hover {
-    background: var(--star-color);
-    color: var(--space-dark);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
     .video-grid {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
     
     .main-header {
-      margin: 1rem;
-      padding: 1rem;
+        margin: 1rem;
+        padding: 1rem;
     }
     
-    .video-description {
-      padding: 1rem;
+    h1 {
+        font-size: 2rem;
     }
-  }
+}
+/* In main.css, voeg deze styles toe */
+.video-page {
+    background: url('achtergrond/achtergrond1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+.hoofdpagina{
+    background: url('achtergrond/achtergrond2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+.video-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.3)
+    );
+    z-index: -1;
+}
+
+.video-link {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.video-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    background: var(--glass-bg);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateX(-5px);
+}
