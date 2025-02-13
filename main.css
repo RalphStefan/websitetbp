@@ -198,15 +198,14 @@ footer {
 /* De css van de uitleg.html */
 
 .uitleg-page {
-    background: url('./achtergrond/pillarsOfCreation.webp') no-repeat center center fixed;
-    background-size: contain;
+    -webkit-background-size: cover;
+    background-size: cover;
     position: absolute;
     min-height: 100vh;
-    min-width: 105%;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    min-width: 100vh;
+    height: auto;
 }
+
 
 .uitleg-sectie {
     background: var(--glass-bg);
