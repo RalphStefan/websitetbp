@@ -1,4 +1,4 @@
-/* Reset en basis stijlen */
+/* Reset en variabelen */
 * {
     margin: 0;
     padding: 0;
@@ -6,41 +6,93 @@
 }
 
 :root {
-    --primary-color: #1a1a2e;
-    --secondary-color: #16213e;
-    --accent-color: #0f3460;
-    --text-color: #e94560;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #0f3460;
+    --text: #e94560;
+    --glas-bg: rgba(255, 255, 255, 0.1);
+    --glas-rand: rgba(255, 255, 255, 0.2);
 }
 
+/* Algemene stijlen */
 body {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, system-ui, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
-/* Header en navigatie */
-.main-header {
-    background: var(--glass-bg);
+/* Pagina achtergronden - elk met eigen afbeelding */
+.video-page, .hoofdpagina, .uitleg-page {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.video-page { background-image: url('./achtergrond/achtergrond1.jpg'); }
+.hoofdpagina { background-image: url('./achtergrond/HicksonCompactGroup40.png'); }
+.uitleg-page { background-image: url('./achtergrond/achtergrond4.png'); }
+
+/* Glazen container basis - herbruikbaar voor meerdere elementen */
+.glas-container {
+    background: var(--glas-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    border: 1px solid var(--glas-rand);
+    border-radius: 15px;
     padding: 2rem;
     margin: 2rem auto;
-    max-width: 1200px;
+    max-width: 900px;
     text-align: center;
 }
-
-/* Main content */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.cppCode {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
 }
 
-/* Video grid sectie */
+.ccpUitleg {
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glas-rand);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    text-align: left;
+}
+
+/* Navigatie elementen - knoppen en links */
+.nav-button, .video-link, .back-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--glas-bg);
+    border: 1px solid var(--glas-rand);
+    border-radius: 2rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover effecten voor interactieve elementen */
+.nav-button:hover,
+.video-link:hover { transform: translateY(-2px); }
+.back-button:hover { transform: translateX(-5px); }
+
+/* Content containers - notities en code blocks */
+.cppCode,
+.math-note,
+.example-output,
+.simulation-note {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Grid layout voor videos */
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -48,48 +100,17 @@ main {
     padding: 2rem 0;
 }
 
-.video-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.video-container:hover {
-    transform: translateY(-5px);
+/* Typografie */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 video {
     width: 100%;
     border-radius: 10px 10px 0 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.video-description {
-    padding: 1.5rem;
-}
-
-.video-description h4 {
-    color: var(--text-color);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Text styling */
-h1, h2, h3, h4 {
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--text-color), #fff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 /* Footer */
@@ -117,171 +138,6 @@ footer {
 .footer-nav a:hover {
     color: white;
 }
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .video-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .main-header {
-        margin: 1rem;
-        padding: 1rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-}
-/* In main.css, voeg deze styles toe */
-.video-page {
-    background: url('./achtergrond/achtergrond1.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-    min-height: 100vh;
-}
-
-.hoofdpagina {
-    background: url('./achtergrond/HicksonCompactGroup40.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-    min-height: 100vh;
-}
-
-.video-page::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.3)
-    );
-    z-index: -1;
-}
-
-.video-link {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 2rem;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-}
-
-.video-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.back-button {
-    color: white;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    background: var(--glass-bg);
-    transition: all 0.3s ease;
-}
-
-.back-button:hover {
-    transform: translateX(-5px);
-}
-
-/* De css van de uitleg.html */
-
-.uitleg-page {
-    -webkit-background-size: cover;
-    background-size: cover;
-    position: absolute;
-    min-height: 100vh;
-    min-width: 100vh;
-    height: auto;
-}
-
-
-.uitleg-sectie {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 900px;
-}
-
-.code-container {
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 1rem 0;
-    overflow-x: auto;
-}
-
-.uitleg-text {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-top: 1rem;
-}
-
-.uitleg-text ul {
-    list-style-position: inside;
-    padding-left: 1rem;
-}
-
-.nav-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
-}
-
-.nav-button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 2rem;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.nav-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-.math-note {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-    font-style: italic;
-}
-.example-output {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-top: 1rem;
-    font-family: monospace;
-    color: #4CAF50;
-}
-
-.example-output pre {
-    margin: 0;
-    white-space: pre-wrap;
-}
-.simulation-note {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
-    border-radius: 8px;
-    padding: 1rem;
-    margin-top: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+.comment {
+    color: green;
 }
