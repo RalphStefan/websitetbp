@@ -199,10 +199,16 @@ footer {
 
 .uitleg-page {
     background: url('./achtergrond/pillarsOfCreation.webp') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
+    background-size: contain;
+    position: absolute;
     min-height: 100vh;
+    min-width: 105%;
+    width: 105%;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
+
 .uitleg-sectie {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
