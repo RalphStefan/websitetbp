@@ -139,11 +139,6 @@ footer {
     -webkit-background-size: cover;
     background-size: cover;
     min-height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 .hoofdpagina {
@@ -151,11 +146,6 @@ footer {
     -webkit-background-size: cover;
     background-size: cover;
     min-height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 .video-page::before {
@@ -212,13 +202,7 @@ footer {
     -webkit-background-size: cover;
     background-size: cover;
     min-height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
-
 .uitleg-sectie {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
