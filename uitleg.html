@@ -56,6 +56,7 @@ int main() {
                 </ul>
             </div>
         </section>
+        
         <h1>Programmeer Uitleg</h1>
         <nav class="main-nav">
             <div class="nav-links">
@@ -66,6 +67,276 @@ int main() {
         <section class="uitleg-sectie">
             <h2>2. Volgende Uitleg</h2>
             <p>Hier komt de volgende uitleg...</p>
+        </section>
+        <section class="uitleg-sectie">
+            <h2>2. Snelheidslimieten in Simulatie</h2>
+            <div class="code-container">
+                <pre><code class="language-cpp">
+        // Maximum snelheid definieren
+        const float MAX_VELOCITY = 300;  // Limiet aan de snelheid
+        
+        // Snelheidslimiet toepassen
+        if (std::sqrt(a.velocity.x * a.velocity.x + a.velocity.y * a.velocity.y) > MAX_VELOCITY) {
+            a.velocity = MAX_VELOCITY * (a.velocity / std::sqrt(a.velocity.x * a.velocity.x + 
+                                                               a.velocity.y * a.velocity.y));
+        }
+        if (std::sqrt(b.velocity.x * b.velocity.x + b.velocity.y * b.velocity.y) > MAX_VELOCITY) {
+            b.velocity = MAX_VELOCITY * (b.velocity / std::sqrt(b.velocity.x * b.velocity.x + 
+                                                               b.velocity.y * b.velocity.y));
+        }
+        
+        // Debug informatie printen
+        std::cout << "Force applied: (" << force.x << ", " << force.y << ")\n";
+        std::cout << "a.velocity: (" << a.velocity.x << ", " << a.velocity.y << ")\n";
+        std::cout << "b.velocity: (" << b.velocity.x << ", " << b.velocity.y << ")\n";
+                </code></pre>
+            </div>
+            <div class="uitleg-text">
+                <h3>Uitleg van de Snelheidslimiet:</h3>
+                <ul>
+                    <li>We stellen een maximale snelheid in van 300 eenheden per tijdstap</li>
+                    <li>De code berekent de huidige snelheid met de Pythagoras formule: √(vx² + vy²)</li>
+                    <li>Als de snelheid te hoog wordt, schalen we deze terug naar MAX_VELOCITY</li>
+                    <li>Dit voorkomt dat objecten onrealistische snelheden bereiken</li>
+                    <li>De debug output helpt bij het controleren van de krachten en snelheden</li>
+                </ul>
+                <div class="math-note">
+                    <p>Wiskundige Notitie:</p>
+                    <p>We gebruiken vectornormalisatie om de richting te behouden terwijl we de magnitude aanpassen:
+                       v_new = MAX_VELOCITY * (v / |v|)</p>
+                </div>
+            </div>
+        </section>
+        <section class="uitleg-sectie">
+            <h2>3. Debug Output</h2>
+            <div class="code-container">
+                <pre><code class="language-cpp">
+        // Debug informatie printen
+        std::cout << "Force applied: (" << force.x << ", " << force.y << ")\n";
+        std::cout << "a.velocity: (" << a.velocity.x << ", " << a.velocity.y << ")\n";
+        std::cout << "b.velocity: (" << b.velocity.x << ", " << b.velocity.y << ")\n";
+                </code></pre>
+            </div>
+            <div class="uitleg-text">
+                <h3>Uitleg van Debug Output:</h3>
+                <ul>
+                    <li>We printen drie belangrijke waarden:</li>
+                    <ul>
+                        <li>De toegepaste kracht tussen de objecten (force)</li>
+                        <li>De snelheid van object a (velocity)</li>
+                        <li>De snelheid van object b (velocity)</li>
+                    </ul>
+                    <li>Elke vector wordt getoond als (x, y) coördinaten</li>
+                    <li>'\n' zorgt voor een nieuwe regel na elke output</li>
+                </ul>
+                
+                <div class="example-output">
+                    <h4>Voorbeeld Output:</h4>
+                    <pre>
+        Force applied: (-156.78, 234.91)
+        a.velocity: (45.23, -78.12)
+        b.velocity: (-45.23, 78.12)
+                    </pre>
+                </div>
+            </div>
+        </section>
+        <section class="uitleg-sectie">
+            <h2>4. Body Struct: Object Definitie</h2>
+            <div class="code-container">
+                <pre><code class="language-cpp">
+        struct Body {
+            sf::Vector2f position;      // Positie vector (x,y)
+            sf::Vector2f velocity;      // Snelheid vector (vx,vy)
+            float mass;                 // Massa van het lichaam
+            sf::CircleShape shape;      // Visuele representatie
+        
+            // Constructor
+            Body(float m, float x, float y, sf::Color color) : mass(m), position(x, y) {
+                shape.setRadius(10);                
+                shape.setOrigin(10, 10);           
+                shape.setPosition(position);        
+                shape.setFillColor(color);         
+            }
+        
+            void updatePosition(float dt) {
+                position += velocity * dt;          
+                shape.setPosition(position);        
+                std::cout << "Position: (" << position.x << ", " << position.y << ")\n";
+                std::cout << "Velocity: (" << velocity.x << ", " << velocity.y << ")\n";
+            }
+        };</code></pre>
+            </div>
+        
+            <div class="uitleg-text">
+                <h3>Properties van een Body:</h3>
+                <ul>
+                    <li><strong>position (sf::Vector2f)</strong>: 
+                        <ul>
+                            <li>Slaat x en y coördinaten op</li>
+                            <li>Bepaalt waar het object zich bevindt in het venster</li>
+                        </ul>
+                    </li>
+                    <li><strong>velocity (sf::Vector2f)</strong>:
+                        <ul>
+                            <li>Snelheidsvector met x en y componenten</li>
+                            <li>Bepaalt hoe snel en in welke richting het object beweegt</li>
+                        </ul>
+                    </li>
+                    <li><strong>mass (float)</strong>:
+                        <ul>
+                            <li>De massa van het object</li>
+                            <li>Beïnvloedt de zwaartekracht interactie</li>
+                        </ul>
+                    </li>
+                </ul>
+        
+                <h3>Visuele Representatie:</h3>
+                <ul>
+                    <li><strong>shape (sf::CircleShape)</strong>:
+                        <ul>
+                            <li>setRadius(10): Stelt de grootte van de cirkel in</li>
+                            <li>setOrigin(10, 10): Plaatst het middelpunt in het centrum</li>
+                            <li>setPosition: Updates de visuele positie</li>
+                            <li>setFillColor: Geeft elk object een unieke kleur</li>
+                        </ul>
+                    </li>
+                </ul>
+        
+                <div class="math-note">
+                    <p>Bewegingsformule:</p>
+                    <p>nieuwe_positie = oude_positie + (snelheid × tijdstap)</p>
+                    <p>In code: position += velocity * dt</p>
+                </div>
+            </div>
+        </section>
+        <section class="uitleg-sectie">
+            <h2>5. Zwaartekracht Berekening</h2>
+            <div class="code-container">
+                <pre><code class="language-cpp">
+        void applyGravity(Body& a, Body& b, float dt) {
+            sf::Vector2f direction = b.position - a.position;
+            float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+            if (distance < 1.0f) distance = 1.0f;
+        
+            sf::Vector2f force = (G * a.mass * b.mass / (distance * distance)) 
+                                * (direction / distance);
+            
+            a.velocity += force / a.mass * dt;
+            b.velocity -= force / b.mass * dt;
+        }</code></pre>
+            </div>
+        
+            <div class="uitleg-text">
+                <h3>Stap-voor-stap Uitleg:</h3>
+                <ol>
+                    <li><strong>Richting Berekenen</strong>
+                        <ul>
+                            <li>direction = b.position - a.position</li>
+                            <li>Geeft een vector die wijst van object a naar object b</li>
+                        </ul>
+                    </li>
+                    <li><strong>Afstand Berekenen</strong>
+                        <ul>
+                            <li>Gebruikt Pythagoras: √(Δx² + Δy²)</li>
+                            <li>Minimum afstand van 1.0 voorkomt oneindige krachten</li>
+                        </ul>
+                    </li>
+                    <li><strong>Zwaartekracht Berekenen</strong>
+                        <ul>
+                            <li>Gebruikt Newton's gravitatiewet: F = G(m₁m₂)/r²</li>
+                            <li>Vermenigvuldigt met genormaliseerde richtingsvector</li>
+                        </ul>
+                    </li>
+                    <li><strong>Snelheid Updaten</strong>
+                        <ul>
+                            <li>Gebruikt F = ma → a = F/m</li>
+                            <li>v = v₀ + at voor beide objecten</li>
+                            <li>Tegengestelde krachten voor actie-reactie</li>
+                        </ul>
+                    </li>
+                </ol>
+        
+                <div class="physics-note">
+                    <h4>Natuurkundige Formules:</h4>
+                    <ul>
+                        <li>Gravitatiekracht: F = G(m₁m₂)/r²</li>
+                        <li>Versnelling: a = F/m</li>
+                        <li>Snelheidsverandering: Δv = a×dt</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="uitleg-sectie">
+            <h2>6. Main Programma Loop</h2>
+            <div class="code-container">
+                <pre><code class="language-cpp">
+        int main() {
+            sf::RenderWindow window(sf::VideoMode(800, 600), "Two Body Problem");
+        
+            Body body1(1e24, 300, 300, sf::Color::Red);
+            Body body2(1e24, 500, 300, sf::Color::Blue);
+        
+            body1.velocity = sf::Vector2f(200, 400);
+            body2.velocity = sf::Vector2f(-200, -400);
+        
+            sf::Clock clock;
+            while (window.isOpen()) {
+                float dt = clock.restart().asSeconds();
+                if (dt == 0) continue;
+                
+                applyGravity(body1, body2, dt);
+                body1.updatePosition(dt);
+                body2.updatePosition(dt);
+        
+                window.clear();
+                window.draw(body1.shape);
+                window.draw(body2.shape);
+                window.display();
+            }
+        }</code></pre>
+            </div>
+        
+            <div class="uitleg-text">
+                <h3>Programma Opbouw:</h3>
+                <ol>
+                    <li><strong>Window Setup</strong>
+                        <ul>
+                            <li>Creëert een venster van 800x600 pixels</li>
+                            <li>Titel: "Two Body Problem"</li>
+                        </ul>
+                    </li>
+                    <li><strong>Object Initialisatie</strong>
+                        <ul>
+                            <li>Twee lichamen met massa 1e24 (vergelijkbaar met planeten)</li>
+                            <li>Verschillende startposities (300,300) en (500,300)</li>
+                            <li>Tegengestelde initiële snelheden voor orbitale beweging</li>
+                        </ul>
+                    </li>
+                    <li><strong>Game Loop</strong>
+                        <ul>
+                            <li>Clock houdt tijd bij tussen frames</li>
+                            <li>dt (delta time) zorgt voor consistente beweging</li>
+                            <li>Fysica updates worden elke frame berekend</li>
+                        </ul>
+                    </li>
+                    <li><strong>Render Cyclus</strong>
+                        <ul>
+                            <li>clear(): Maakt scherm leeg</li>
+                            <li>draw(): Tekent beide objecten</li>
+                            <li>display(): Toont het gerenderde frame</li>
+                        </ul>
+                    </li>
+                </ol>
+        
+                <div class="simulation-note">
+                    <h4>Simulatie Parameters:</h4>
+                    <ul>
+                        <li>Massa's: 1e24 kg (planeet-achtige objecten)</li>
+                        <li>Initiële snelheden: ±200 x, ±400 y pixels/seconde</li>
+                        <li>Frame-onafhankelijke fysica door dt</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
 

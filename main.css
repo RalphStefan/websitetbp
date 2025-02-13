@@ -253,3 +253,30 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+.math-note {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-style: italic;
+}
+.example-output {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: monospace;
+    color: #4CAF50;
+}
+
+.example-output pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+.simulation-note {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
