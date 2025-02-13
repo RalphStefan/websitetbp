@@ -136,11 +136,11 @@ footer {
 /* In main.css, voeg deze styles toe */
 .video-page {
     background: url('./achtergrond/achtergrond1.jpg') no-repeat center center fixed;
-    background-size: contain;
-    position: absolute;
+    -webkit-background-size: cover;
+    background-size: cover;
     min-height: 100vh;
-    min-width: 105%;
-    width: 105%;
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
@@ -148,11 +148,11 @@ footer {
 
 .hoofdpagina {
     background: url('./achtergrond/HicksonCompactGroup40.png') no-repeat center center fixed;
-    background-size: contain;
-    position: absolute;
+    -webkit-background-size: cover;
+    background-size: cover;
     min-height: 100vh;
-    min-width: 105%;
-    width: 105%;
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
@@ -209,11 +209,11 @@ footer {
 
 .uitleg-page {
     background: url('./achtergrond/pillarsOfCreation.webp') no-repeat center center fixed;
-    background-size: contain;
-    position: absolute;
+    -webkit-background-size: cover;
+    background-size: cover;
     min-height: 100vh;
-    min-width: 105%;
-    width: 105%;
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
