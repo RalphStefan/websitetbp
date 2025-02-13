@@ -203,7 +203,6 @@ footer {
     position: absolute;
     min-height: 100vh;
     min-width: 105%;
-    width: 105%;
     top: 0;
     left: 0;
     z-index: -1;
