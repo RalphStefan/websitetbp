@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Uitleg - Three Body Problem</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body class="uitleg-page">
+    <header class="main-header">
+        <h1>Programmeer Uitleg</h1>
+        <nav class="main-nav">
+            <a href="index.html" class="back-button">← Terug naar hoofdpagina</a>
+        </nav>
+    </header>
+
+    <main class="uitleg-container">
+        <section class="uitleg-sectie">
+            <h2>1. Basis C++ Programma</h2>
+            <div class="code-container">
+                <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+double pi = 3.14159265359;   // dit is de constante van pi 
+
+int main() {
+    int r = 4;    // dit is de straal
+    double inhoud = pi*r*r;
+    cout << "de inhoud van dit rondje is" << inhoud << endl;
+    
+    for(int i = 0; i<7; i++){
+        cout << i << endl;   // endl = zin einde en zal een enter geven
+    }
+    
+    int i = 0;
+    while (i < 5) {
+        cout << i << endl;
+        i++;         
+        // Je kan zien dat een for loop en while loop gelijk aan 
+        // elkaar staan, wij gaan gebruik maken van een while loop.
+    }          
+    cout << "hier komt de tekst die we geprint willen hebben";
+    return 0;   // hier zeggen wij dat het programma moet stoppen met runnen
+}
+                </code></pre>
+            </div>
+            <div class="uitleg-text">
+                <h3>Uitleg van de code:</h3>
+                <ul>
+                    <li>We beginnen met het includeren van de input/output library</li>
+                    <li>We definiëren pi als een constante waarde</li>
+                    <li>In de main functie berekenen we de oppervlakte van een cirkel</li>
+                    <li>We demonstreren het verschil tussen for en while loops</li>
+                    <li>De code laat zien hoe je text kunt printen en programma's kunt afsluiten</li>
+                </ul>
+            </div>
+        </section>
+        <h1>Programmeer Uitleg</h1>
+        <nav class="main-nav">
+            <div class="nav-links">
+                <a href="index.html" class="nav-button">← Hoofdpagina</a>
+                <a href="videos.html" class="nav-button">Simulaties →</a>
+            </div>
+        <!-- Placeholder secties voor de overige 7 uitleg stukken -->
+        <section class="uitleg-sectie">
+            <h2>2. Volgende Uitleg</h2>
+            <p>Hier komt de volgende uitleg...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Three Body Problem Project</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-cpp.min.js"></script>
+</body>
+</html>
