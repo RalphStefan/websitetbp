@@ -197,7 +197,7 @@ footer {
 /* De css van de uitleg.html */
 
 .uitleg-page {
-    background: url('./achtergrond/achtergrond1.jpg') no-repeat center center fixed;
+    background: url('./achtergrond/pillarsOfCreation.webp') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
 }
