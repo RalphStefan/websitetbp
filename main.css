@@ -55,7 +55,7 @@ body {
     margin-top: 1rem;
 }
 
-.ccpUitleg {
+.cppUitleg {
     backdrop-filter: blur(10px);
     border: 1px solid var(--glas-rand);
     border-radius: 15px;
@@ -95,9 +95,12 @@ body {
 /* Grid layout voor videos */
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 0.5fr));
     gap: 2rem;
-    padding: 2rem 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-top:20px ;
 }
 
 /* Typografie */

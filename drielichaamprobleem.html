@@ -14,31 +14,33 @@
                 <a href="videos.html" class="nav-button">Simulaties →</a>
                 <a href="tweelichaamprobleem.html" class="nav-button">twee lichamen </a>
                 <a href="uitleg.html" class="nav-button">Begin C++ en SFML</a>
-            </div>
         </nav>
     </header>
 
-    <main class="uitleg-container">
-        <section class="glas-container">
-            <h2>1. Basis C++ Programma</h2>
+<div class="uitleg-container">
+    <section class="glas-container">
+        <h2> Drie lichaam probleem-code</h2>
+        <div class="cppCode">
+                <p class="comment">//&nbsp;Header&nbsp;bestanden</p>
+                <p>#include&nbsp;&lt;SFML/Graphics.hpp&gt;</p>
+                <p>#include&nbsp;&lt;vector&gt;</p>
+                <p>#include&nbsp;&lt;cmath&gt;</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>#include</h3>
+                <p>Deze regels code importeren de nodige bibliotheken voor het programma. SFML/Graphics.hpp bevat de grafische functies die we nodig hebben om de simulatie te maken. Vector en cmath worden gebruikt voor het werken met vectoren en wiskundige berekeningen.</p>
+        </div>
+        <div class="glas-container">
             <div class="cppCode">
-                <!DOCTYPE html>
-                <html lang="nl">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Drie-Lichamen Probleem</title>
-                    <style>
-                        .comment { color: green; }
-                    </style>
-                </head>
-                <body>
-                    <p class="comment">//&nbsp;Header&nbsp;bestanden</p>
-                    <p>#include&nbsp;&lt;SFML/Graphics.hpp&gt;</p>
-                    <p>#include&nbsp;&lt;vector&gt;</p>
-                    <p>#include&nbsp;&lt;cmath&gt;</p>
-                    
-                    <p class="comment">//&nbsp;Definieer&nbsp;de&nbsp;CelestialBody&nbsp;klasse</p>
-                    <p>class&nbsp;CelestialBody&nbsp;{</p>
+                <p class="comment">//&nbsp;Definieer&nbsp;de&nbsp;CelestialBody&nbsp;klasse</p>
+                <p>class&nbsp;CelestialBody&nbsp;{</p>
+                    </div>
+            <div class="cppUitleg">
+                    <h3>CelestialBody klasse</h3>
+                    <p>De CelestialBody klasse bevat de eigenschappen en methoden die nodig zijn om een hemellichaam te simuleren. De private leden omvatten de positie, snelheid, massa, straal, vorm en baan van het lichaam. De klasse bevat ook een vector van baanpunten en een limiet voor het aantal punten in de baan.</p>
+            </div>
+            <div class="glas-container">
+            <div class="cppCode">
                     <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Private&nbsp;leden</p>
                     <p>private:</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;position;</p>
@@ -48,33 +50,55 @@
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::CircleShape&nbsp;shape;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vector2f&gt;&nbsp;baan;&nbsp;<span class="comment">//&nbsp;Traject&nbsp;van&nbsp;het&nbsp;lichaam</span></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;int&nbsp;maxBaanPunten&nbsp;=&nbsp;1000;&nbsp;<span class="comment">//&nbsp;Maximum&nbsp;aantal&nbsp;punten&nbsp;in&nbsp;traject</span></p>
-                    
+            </div>
+            <div class="cppUitleg">
+                <h3>Private leden</h3>
+                <p>De private leden van de CelestialBody klasse omvatten de positie, snelheid, massa, straal, vorm, baan en limiet voor het aantal baanpunten van het lichaam. De positie en snelheid worden opgeslagen als vectoren, de massa en straal als floats, de vorm als een cirkelvorm en de baan als een vector van vectoren.</p>
+            </div>
+        </div>
+        <div class="glas-container">
+                <div class="cppCode">
                     <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Publieke&nbsp;leden&nbsp;en&nbsp;methoden</p>
                     <p>public:</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;getPosition()&nbsp;const&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;position;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                </div>
+                <div class="cppUitleg">
+                    <h3>Publieke leden en methoden</h3>
+                    <p>De publieke leden en methoden van de CelestialBody klasse stellen gebruikers in staat om de positie van het lichaam op te vragen. Deze methode retourneert de huidige positie van het lichaam.</p>
+                </div>
+                <div class="cppCode">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody(float&nbsp;x,&nbsp;float&nbsp;y,&nbsp;float&nbsp;m,&nbsp;float&nbsp;r,&nbsp;const&nbsp;sf::Color&amp;&nbsp;kleur)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;=&nbsp;sf::Vector2f(x,&nbsp;y);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;sf::Vector2f(0.f,&nbsp;0.f);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mass&nbsp;=&nbsp;m;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;=&nbsp;r;</p>
-                    
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setRadius(radius);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setFillColor(kleur);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setOrigin(sf::Vector2f(radius,&nbsp;radius));</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    
+                </div>
+                <div class="cppUitleg">
+                    <h3>CelestialBody constructor</h3>
+                    <p>De constructor van de CelestialBody klasse initialiseert de positie, snelheid, massa, straal, vorm en kleur van het lichaam. De positie wordt ingesteld op de opgegeven x- en y-coördinaten, de snelheid op nul, de massa op de opgegeven waarde, de straal op de opgegeven waarde, de vorm op een cirkel met de opgegeven straal en kleur, en de oorsprong van de vorm op de positie van het lichaam.</p>
+                </div>
+                <div class="cppCode">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;setSnelheid(const&nbsp;sf::Vector2f&amp;&nbsp;vel)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;vel;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    
+                        
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;update(const&nbsp;CelestialBody&amp;&nbsp;ander,&nbsp;float&nbsp;dt)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;r&nbsp;=&nbsp;ander.position&nbsp;-&nbsp;position;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;afstand&nbsp;=&nbsp;std::sqrt(r.x&nbsp;*&nbsp;r.x&nbsp;+&nbsp;r.y&nbsp;*&nbsp;r.y);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;G&nbsp;=&nbsp;6.67430e-11f&nbsp;*&nbsp;1e4f;&nbsp;<span class="comment">//&nbsp;Gravitatieconstante</span></p>
-                    
+                </div>
+                <div class="cppUitleg">
+                    <h3>setSnelheid en update methoden</h3>
+                    <p>De setSnelheid methode stelt de snelheid van het lichaam in op de opgegeven vector. De update methode berekent de krachten en versnellingen tussen het lichaam en een ander lichaam, en past de snelheid en positie van het lichaam aan op basis van de berekende waarden.</p>
+                </div>
+                <div class="cppCode">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(afstand&nbsp;&gt;&nbsp;0.1f)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;richting&nbsp;=&nbsp;r&nbsp;/&nbsp;afstand;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;kracht&nbsp;=&nbsp;richting&nbsp;*&nbsp;G&nbsp;*&nbsp;mass&nbsp;*&nbsp;ander.mass&nbsp;/&nbsp;(afstand&nbsp;*&nbsp;afstand);</p>
@@ -83,19 +107,29 @@
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;+=&nbsp;velocity&nbsp;*&nbsp;dt;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);</p>
-                    
+                        
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;bhan.push_back(position);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;maxBaanPunten)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bhan.erase(baan.begin());</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    
+                </div>
+                <div class="cppUitleg">
+                    <h3>Gravitatiekrachten en baanpunten</h3>
+                    <p>De code berekent de gravitatiekrachten tussen het lichaam en een ander lichaam, en past de snelheid en positie van het lichaam aan op basis van deze krachten. De baanpunten van het lichaam worden bijgewerkt en beperkt tot een maximum aantal punten.</p>
+</div>
+                <div class="cppCode">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;teken(sf::RenderTarget&amp;&nbsp;doel)&nbsp;const&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Teken&nbsp;bhan</span></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;1)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vertex&gt;&nbsp;lijnen;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.reserve(baan.size()&nbsp;*&nbsp;2);</p>
-                    
+                </div>
+                <div class="cppUitleg">
+                    <h3>teken methode</h3>
+                    <p>De teken methode tekent de baan van het lichaam op het opgegeven doel. Het maakt gebruik van een vector van lijnen om de baanpunten van het lichaam te verbinden en tekent deze lijnen op het doel. De vorm van het lichaam wordt ook getekend op het doel.</p>
+                </div>
+                <div class="cppCode">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(size_t&nbsp;i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;bhan.size();&nbsp;++i)&nbsp;{</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vertex&nbsp;v1,&nbsp;v2;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.position&nbsp;=&nbsp;baan[i-1];</p>
@@ -105,89 +139,257 @@
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v1);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v2);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    
+
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(lijnen.data(),&nbsp;lijnen.size(),&nbsp;sf::PrimitiveType::Lines);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    
+                        
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(shape);</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
                     <p>};</p>
-                    
-                    <p class="comment">//&nbsp;Hoofdfunctie</p>
-                    <p>int&nbsp;main()&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::RenderWindow&nbsp;window(sf::VideoMode({900u,&nbsp;900u}),&nbsp;"Drie-Lichamen&nbsp;Probleem");</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;window.setFramerateLimit(60);</p>
-                    
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Zet&nbsp;de&nbsp;view&nbsp;op&nbsp;een&nbsp;vast&nbsp;punt</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::View&nbsp;view(sf::FloatRect(sf::Vector2f(0,&nbsp;0),&nbsp;sf::Vector2f(900,&nbsp;900)));</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;window.setView(view);</p>
-                    
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Drie&nbsp;lichamen&nbsp;in&nbsp;driehoeksformatie</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa1&nbsp;=&nbsp;1.1e13f;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa2&nbsp;=&nbsp;1.1e13f;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa3&nbsp;=&nbsp;1.1e13f;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;straal&nbsp;=&nbsp;5.0f;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//rechts</span></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//linksboven</span></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//onder</span></p>
+                </div>
+                <div class="cppUitleg">
+                    <h3>Verbindingen en tekenen</h3>
+                    <p>De code maakt lijnen tussen de baanpunten van het lichaam en tekent deze lijnen op het doel. De vorm van het lichaam wordt ook getekend op het doel. Dit zorgt voor een visuele weergave van de beweging van het lichaam.</p>
+        </div>
+    </div>
+    </div>
+    <div class="glas-container">
+        <div class="cppCode">
+                <p class="comment">//&nbsp;Hoofdfunctie</p>
+                <p>int&nbsp;main()&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::RenderWindow&nbsp;window(sf::VideoMode({900u,&nbsp;900u}),&nbsp;"Drie-Lichamen&nbsp;Probleem");</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;window.setFramerateLimit(60);</p>
+        </div>
+        <div class="cppUitleg" style="background: rgba(85, 85, 85, 0.695);"  >
+                <h3>het creëren van window</h3>
+                <p>Hier wordt de window gecreëerd met een grootte van 900x900 pixels en de titel "Drie-Lichamen Probleem". De framerate van de window wordt ingesteld op 60 frames per seconde.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Zet&nbsp;de&nbsp;view&nbsp;op&nbsp;een&nbsp;vast&nbsp;punt</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::View&nbsp;view(sf::FloatRect(sf::Vector2f(0,&nbsp;0),&nbsp;sf::Vector2f(900,&nbsp;900)));</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;window.setView(view);</p>
+        </div>
+        <div class="cppUitleg" style="background: rgba(85, 85, 85, 0.695);">
+                <h3>het instellen van de view</h3>
+                <p>De view wordt ingesteld op een vast punt in het midden van het scherm met een grootte van 900x900 pixels. Dit zorgt ervoor dat de simulatie altijd vanuit hetzelfde perspectief wordt weergegeven.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Drie&nbsp;lichamen&nbsp;in&nbsp;driehoeksformatie</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa1&nbsp;=&nbsp;1.1e13f;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa2&nbsp;=&nbsp;1.1e13f;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa3&nbsp;=&nbsp;1.1e13f;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;straal&nbsp;=&nbsp;5.0f;</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Initialisatie van lichamen</h3>
+                <p>De massa's en straal van de drie lichamen worden geïnitialiseerd. De massa's zijn gelijk en de straal is vastgesteld op 5.0f.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//rechts</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//linksboven</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//onder</span></p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Beginsnelheden&nbsp;voor&nbsp;rotatie</span></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Clock&nbsp;klok;</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(window.isOpen())&nbsp;{</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(auto&nbsp;event&nbsp;=&nbsp;window.pollEvent())&nbsp;{</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(event->is&lt;sf::Event::Closed&gt;())&nbsp;{</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;dt&nbsp;=&nbsp;klok.restart().asSeconds()&nbsp;*&nbsp;0.1f;</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Update&nbsp;alle&nbsp;lichamen</span></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.update(lichaam2,&nbsp;dt);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.update(lichaam3,&nbsp;dt);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.update(lichaam1,&nbsp;dt);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.update(lichaam3,&nbsp;dt);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.update(lichaam1,&nbsp;dt);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.update(lichaam2,&nbsp;dt);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.setCenter(lichaam1.getPosition());</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;zet&nbsp;de&nbsp;view&nbsp;op&nbsp;het&nbsp;middelpunt&nbsp;van&nbsp;lichaam1</span></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.setView(view);</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.clear(sf::Color::Black);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.teken(window);</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.teken(window);</p>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.display();</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</p>
-<p>}</p>
-
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Beginsnelheden&nbsp;voor&nbsp;rotatie</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Initialisatie van lichamen en beginsnelheden</h3>
+                <p>De lichamen worden geïnitialiseerd met hun posities, massa's, straal en kleuren. De beginsnelheden van de lichamen worden ingesteld om rotatie te simuleren.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Clock&nbsp;klok;</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Initialisatie van klok</h3>
+                <p>Een klok wordt geïnitialiseerd om de tijd tussen frames te meten en te gebruiken voor de simulatie.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(window.isOpen())&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(auto&nbsp;event&nbsp;=&nbsp;window.pollEvent())&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(event->is&lt;sf::Event::Closed&gt;())&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Hoofdloop</h3>
+                <p>De hoofdloop van het programma controleert of het venster open is en verwerkt de gebeurtenissen die zich voordoen. Als het venster wordt gesloten, wordt het programma afgesloten.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;dt&nbsp;=&nbsp;klok.restart().asSeconds()&nbsp;*&nbsp;0.1f;</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Tijd tussen frames</h3>
+                <p>De tijd tussen frames wordt gemeten en omgezet naar seconden. Deze tijd wordt gebruikt om de simulatie te updaten en te tekenen.</p>
+        </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Update&nbsp;alle&nbsp;lichamen</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.update(lichaam2,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.update(lichaam3,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.update(lichaam1,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.update(lichaam3,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.update(lichaam1,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.update(lichaam2,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.setCenter(lichaam1.getPosition());</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Simulatie updaten</h3>
+                <p>Alle lichamen worden geüpdatet met de tijd tussen frames. De posities en snelheden van de lichamen worden aangepast op basis van de gravitatiekrachten tussen de lichamen. De view wordt gecentreerd op het eerste lichaam om het middelpunt van de simulatie te behouden.</p>
             </div>
-            <div class="ccpUitleg">
-                <h3>Uitleg van de code:</h3>
-                <ul>
-                    <li>We beginnen met het includeren van de input/output library</li>
-                    <li>We definiëren pi als een constante waarde</li>
-                    <li>In de main functie berekenen we de oppervlakte van een cirkel</li>
-                    <li>We demonstreren het verschil tussen for en while loops</li>
-                    <li>De code laat zien hoe je text kunt printen en programma's kunt afsluiten</li>
-                </ul>
-            </div>
-        </section>
-        
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;zet&nbsp;de&nbsp;view&nbsp;op&nbsp;het&nbsp;middelpunt&nbsp;van&nbsp;lichaam1</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.setView(view);</p>
 
-        <header class="glas-container">
-            <h1>Programmeer Uitleg</h1>
-        </header>
-        
-    </main>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.clear(sf::Color::Black);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.teken(window);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.teken(window);</p>
 
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.display();</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>View en tekenen</h3>
+                <p>De view wordt ingesteld op het middelpunt van het eerste lichaam en het venster wordt leeggemaakt met een zwarte achtergrond. De lichamen worden getekend op het venster en het venster wordt weergegeven.</p>
+                </div>
+        <div class="cppCode">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</p>
+                <p>}</p>
+        </div>
+        <div class="cppUitleg">
+                <h3>Programma afsluiten</h3>
+                <p>Het programma wordt afgesloten en geeft een returnwaarde van 0.</p>
+                </div>
+    </section> 
+</div>
+
+<div class="uitleg-container">
+    <section class="glas-container">
+    <h2>volledige code</h2>
+    <div class="cppCode">
+    <p class="comment">//&nbsp;Header&nbsp;bestanden</p>
+    <p>#include&nbsp;&lt;SFML/Graphics.hpp&gt;</p>
+    <p>#include&nbsp;&lt;vector&gt;</p>
+    <p>#include&nbsp;&lt;cmath&gt;</p>
+    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Private&nbsp;leden</p>
+    <p>private:</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;position;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;velocity;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;mass;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;radius;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::CircleShape&nbsp;shape;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vector2f&gt;&nbsp;baan;&nbsp;<span class="comment">//&nbsp;Traject&nbsp;van&nbsp;het&nbsp;lichaam</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;int&nbsp;maxBaanPunten&nbsp;=&nbsp;1000;&nbsp;<span class="comment">//&nbsp;Maximum&nbsp;aantal&nbsp;punten&nbsp;in&nbsp;traject</span></p>
+    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Publieke&nbsp;leden&nbsp;en&nbsp;methoden</p>
+                    <p>public:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;getPosition()&nbsp;const&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;position;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody(float&nbsp;x,&nbsp;float&nbsp;y,&nbsp;float&nbsp;m,&nbsp;float&nbsp;r,&nbsp;const&nbsp;sf::Color&amp;&nbsp;kleur)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;=&nbsp;sf::Vector2f(x,&nbsp;y);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;sf::Vector2f(0.f,&nbsp;0.f);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mass&nbsp;=&nbsp;m;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;=&nbsp;r;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setRadius(radius);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setFillColor(kleur);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setOrigin(sf::Vector2f(radius,&nbsp;radius));</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+							                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;setSnelheid(const&nbsp;sf::Vector2f&amp;&nbsp;vel)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;vel;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                        
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;update(const&nbsp;CelestialBody&amp;&nbsp;ander,&nbsp;float&nbsp;dt)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;r&nbsp;=&nbsp;ander.position&nbsp;-&nbsp;position;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;afstand&nbsp;=&nbsp;std::sqrt(r.x&nbsp;*&nbsp;r.x&nbsp;+&nbsp;r.y&nbsp;*&nbsp;r.y);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;G&nbsp;=&nbsp;6.67430e-11f&nbsp;*&nbsp;1e4f;&nbsp;<span class="comment">//&nbsp;Gravitatieconstante</span></p>
+						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(afstand&nbsp;&gt;&nbsp;0.1f)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;richting&nbsp;=&nbsp;r&nbsp;/&nbsp;afstand;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;kracht&nbsp;=&nbsp;richting&nbsp;*&nbsp;G&nbsp;*&nbsp;mass&nbsp;*&nbsp;ander.mass&nbsp;/&nbsp;(afstand&nbsp;*&nbsp;afstand);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;versnelling&nbsp;=&nbsp;kracht&nbsp;/&nbsp;mass;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;+=&nbsp;versnelling&nbsp;*&nbsp;dt;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;+=&nbsp;velocity&nbsp;*&nbsp;dt;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);</p>
+                        
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;bhan.push_back(position);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;maxBaanPunten)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bhan.erase(baan.begin());</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;teken(sf::RenderTarget&amp;&nbsp;doel)&nbsp;const&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Teken&nbsp;bhan</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;1)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vertex&gt;&nbsp;lijnen;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.reserve(baan.size()&nbsp;*&nbsp;2);</p>
+						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(size_t&nbsp;i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;bhan.size();&nbsp;++i)&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vertex&nbsp;v1,&nbsp;v2;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.position&nbsp;=&nbsp;baan[i-1];</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.color&nbsp;=&nbsp;sf::Color(255,&nbsp;255,&nbsp;255,&nbsp;50);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.position&nbsp;=&nbsp;bhan[i];</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.color&nbsp;=&nbsp;sf::Color(255,&nbsp;255,&nbsp;255,&nbsp;50);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v1);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v2);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(lijnen.data(),&nbsp;lijnen.size(),&nbsp;sf::PrimitiveType::Lines);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                        
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(shape);</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                    <p>};</p>
+					                <p class="comment">//&nbsp;Hoofdfunctie</p>
+                <p>int&nbsp;main()&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::RenderWindow&nbsp;window(sf::VideoMode({900u,&nbsp;900u}),&nbsp;"Drie-Lichamen&nbsp;Probleem");</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;window.setFramerateLimit(60);</p>
+				                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Zet&nbsp;de&nbsp;view&nbsp;op&nbsp;een&nbsp;vast&nbsp;punt</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::View&nbsp;view(sf::FloatRect(sf::Vector2f(0,&nbsp;0),&nbsp;sf::Vector2f(900,&nbsp;900)));</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;window.setView(view);</p>
+				                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Drie&nbsp;lichamen&nbsp;in&nbsp;driehoeksformatie</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa1&nbsp;=&nbsp;1.1e13f;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa2&nbsp;=&nbsp;1.1e13f;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa3&nbsp;=&nbsp;1.1e13f;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;straal&nbsp;=&nbsp;5.0f;</p>
+				                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//rechts</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//linksboven</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//onder</span></p>
+
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Beginsnelheden&nbsp;voor&nbsp;rotatie</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p>
+				     <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Clock&nbsp;klok;</p>
+					                 <p>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(window.isOpen())&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(auto&nbsp;event&nbsp;=&nbsp;window.pollEvent())&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(event->is&lt;sf::Event::Closed&gt;())&nbsp;{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+				                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;dt&nbsp;=&nbsp;klok.restart().asSeconds()&nbsp;*&nbsp;0.1f;</p>
+								                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Update&nbsp;alle&nbsp;lichamen</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.update(lichaam2,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.update(lichaam3,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.update(lichaam1,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.update(lichaam3,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.update(lichaam1,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.update(lichaam2,&nbsp;dt);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.setCenter(lichaam1.getPosition());</p>
+
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;zet&nbsp;de&nbsp;view&nbsp;op&nbsp;het&nbsp;middelpunt&nbsp;van&nbsp;lichaam1</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.setView(view);</p>
+
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.clear(sf::Color::Black);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.teken(window);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.teken(window);</p>
+
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.display();</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+				                <p>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;0;</p>
+                <p>}</p>
+    </div>
+</section>
+</div>
     <footer>
         <p>© 2024 Three Body Problem Project</p>
     </footer>
