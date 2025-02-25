@@ -59,9 +59,88 @@
         </section>
         
 
-        <header class="glas-container">
-            <h1>Programmeer Uitleg</h1>
-        </header>
+        <div class="glas-container">
+            <h2>Hoe werkt SFML</h3>
+             <div class="glas-container">
+                <div class="cppUitleg">
+                    <p>standaard code, voor een scherm in een externe terminal</p>
+                </div>
+
+                <div class="cppCode">
+                    <p>#include &lt;SFML/Window.hpp&gt;</p>
+                    <p>int main()</p>
+                    <p>{</p>
+                    <p>&nbsp;&nbsp;&nbsp;sf::Window window(sf::VideoMode({800, 600}), "My window");</p>
+                    <p>&nbsp;&nbsp;&nbsp;<p class="comment">// run the program as long as the window is open</p></p>
+                    <p>&nbsp;&nbsp;&nbsp;while (window.isOpen())</p>
+                    <p>&nbsp;&nbsp;&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p class="comment">// check all the window's events that were triggered since the last iteration of the loop</p></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (const std::optional event = window.pollEvent())</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p class="comment">// "close requested" event: we close the window</p></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (event->is&lt;sf::Event::Closed()>)</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                    <p>&nbsp;&nbsp;&nbsp;}</p>
+                    <p>}</p>
+
+                </div>
+            </div>
+            <div class="glas-container">
+                <div class="cppUitleg">
+                    <p>standaard code, voor een scherm met een bewegende bal</p>
+                </div>
+                <div class="cppCode">
+                    <p>#include &lt;SFML/Graphics.hpp&gt;</p>
+                    <p>int main()</p>
+                    <p>{</p>
+                    <p>&nbsp;&nbsp;&nbsp;sf::RenderWindow window(sf::VideoMode(800, 600), "Moving Ball");</p>
+                    <p>&nbsp;&nbsp;&nbsp;sf::CircleShape ball(10.f);</p>
+                    <p>&nbsp;&nbsp;&nbsp;ball.setFillColor(sf::Color::Red);</p>
+                    <p>&nbsp;&nbsp;&nbsp;sf::Vector2f position(100.f, 100.f);</p>
+                    <p>&nbsp;&nbsp;&nbsp;sf::Vector2f velocity(0.1f, 0.1f);</p>
+                    <p class="comment">// run the program as long as the window is open</p>
+                    <p>&nbsp;&nbsp;&nbsp;while (window.isOpen())</p>
+                    <p>&nbsp;&nbsp;&nbsp;{</p>
+                    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// check all the window's events that were triggered since the last iteration of the loop</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Event event;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (window.pollEvent(event))</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</p>                            <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// "close requested" event: we close the window</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (event.type == sf::Event::Closed)</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+                    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// move the ball</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position += velocity;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ball.setPosition(position);</p>
+                    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// clear the window with black color</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.clear(sf::Color::Black);</p>
+
+                    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// draw the ball</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.draw(ball);</p>
+
+                    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// end the current frame</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.display();</p>
+                    <p>&nbsp;&nbsp;&nbsp;}</p>
+
+                    <p>&nbsp;&nbsp;&nbsp;return 0;</p>
+                    <p>}</p>
+
+                </div>
+            </div>
+            <div class="glas-container">
+                <div class="cppUitleg">
+                    <p>In de volgende stukken code zal er bruik gemaakt worden van de volgende #include</p>
+                </div>
+                <div class="cppCode">
+                    <p>#include &lt;SFML/Graphics.hpp&gt;</p>
+                    <p>#include &lt;iostream&gt;</p>
+                    <p>#include &lt;cmath&gt;</p>
+                </div>
+                <div class="cppUitleg">
+                    <p>Deze #include zorgen ervoor dat je gebruik kan maken van de SFML library, de input/output library en de math library</p>
+            </div>
+        </div>
         
     </main>
 
