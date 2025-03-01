@@ -7,7 +7,7 @@
     <title>C++ Uitleg - Drie lichamen</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-<body class="uitleg-page">
+<body class="dlp">
     <header class="glas-container">
         <h1>Programmeer Uitleg</h1>
         <nav class="main-nav">
@@ -19,6 +19,10 @@
     </header>
 
 <div class="uitleg-container">
+        <div class="cppUitleg">
+                <h3>Let op</h3>
+                <p>De onderstaande omschreven code is de code van de laatste animatie.</p>
+        </div>
     <section class="glas-container">
         <h2> Drie lichaam probleem-code</h2>
         <div class="cppCode">
@@ -186,14 +190,14 @@
                 <p>De massa's en straal van de drie lichamen worden geïnitialiseerd. De massa's zijn gelijk en de straal is vastgesteld op 5.0f.</p>
         </div>
         <div class="cppCode">
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//rechts</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//linksboven</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//onder</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//Het blauwe balletje op positie (600,400) </span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//Het rode balletje op positie (600,250) </span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//Het groene balletje op positie (600,1600)</span></p>
+                <br>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>  <span class="comment">het blauwe balletje beweegt enkel naar rechts</span>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p> <span class="comment">het rode balletje beweegt enkel naar rechts en beweegt iets langzamer dan het blauwe balletje</span>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p> <span class="comment">het groene balletje beweegt naar links en naar boven</span>
 
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Beginsnelheden&nbsp;voor&nbsp;rotatie</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p>
         </div>
         <div class="cppUitleg">
                 <h3>Initialisatie van lichamen en beginsnelheden</h3>
@@ -269,77 +273,82 @@
     <section class="glas-container">
     <h2>volledige code</h2>
     <div class="cppCode">
-    <p class="comment">//&nbsp;Header&nbsp;bestanden</p>
-    <p>#include&nbsp;&lt;SFML/Graphics.hpp&gt;</p>
-    <p>#include&nbsp;&lt;vector&gt;</p>
-    <p>#include&nbsp;&lt;cmath&gt;</p>
-    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Private&nbsp;leden</p>
-    <p>private:</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;position;</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;velocity;</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;mass;</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;radius;</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::CircleShape&nbsp;shape;</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vector2f&gt;&nbsp;baan;&nbsp;<span class="comment">//&nbsp;Traject&nbsp;van&nbsp;het&nbsp;lichaam</span></p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;int&nbsp;maxBaanPunten&nbsp;=&nbsp;1000;&nbsp;<span class="comment">//&nbsp;Maximum&nbsp;aantal&nbsp;punten&nbsp;in&nbsp;traject</span></p>
-    <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Publieke&nbsp;leden&nbsp;en&nbsp;methoden</p>
-                    <p>public:</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;getPosition()&nbsp;const&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;position;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody(float&nbsp;x,&nbsp;float&nbsp;y,&nbsp;float&nbsp;m,&nbsp;float&nbsp;r,&nbsp;const&nbsp;sf::Color&amp;&nbsp;kleur)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;=&nbsp;sf::Vector2f(x,&nbsp;y);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;sf::Vector2f(0.f,&nbsp;0.f);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mass&nbsp;=&nbsp;m;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;=&nbsp;r;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setRadius(radius);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setFillColor(kleur);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setOrigin(sf::Vector2f(radius,&nbsp;radius));</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-							                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;setSnelheid(const&nbsp;sf::Vector2f&amp;&nbsp;vel)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;vel;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                        
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;update(const&nbsp;CelestialBody&amp;&nbsp;ander,&nbsp;float&nbsp;dt)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;r&nbsp;=&nbsp;ander.position&nbsp;-&nbsp;position;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;afstand&nbsp;=&nbsp;std::sqrt(r.x&nbsp;*&nbsp;r.x&nbsp;+&nbsp;r.y&nbsp;*&nbsp;r.y);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;G&nbsp;=&nbsp;6.67430e-11f&nbsp;*&nbsp;1e4f;&nbsp;<span class="comment">//&nbsp;Gravitatieconstante</span></p>
-						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(afstand&nbsp;&gt;&nbsp;0.1f)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;richting&nbsp;=&nbsp;r&nbsp;/&nbsp;afstand;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;kracht&nbsp;=&nbsp;richting&nbsp;*&nbsp;G&nbsp;*&nbsp;mass&nbsp;*&nbsp;ander.mass&nbsp;/&nbsp;(afstand&nbsp;*&nbsp;afstand);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;versnelling&nbsp;=&nbsp;kracht&nbsp;/&nbsp;mass;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;+=&nbsp;versnelling&nbsp;*&nbsp;dt;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;+=&nbsp;velocity&nbsp;*&nbsp;dt;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);</p>
-                        
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;bhan.push_back(position);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;maxBaanPunten)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bhan.erase(baan.begin());</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;teken(sf::RenderTarget&amp;&nbsp;doel)&nbsp;const&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Teken&nbsp;bhan</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;1)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vertex&gt;&nbsp;lijnen;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.reserve(baan.size()&nbsp;*&nbsp;2);</p>
-						                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(size_t&nbsp;i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;bhan.size();&nbsp;++i)&nbsp;{</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vertex&nbsp;v1,&nbsp;v2;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.position&nbsp;=&nbsp;baan[i-1];</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.color&nbsp;=&nbsp;sf::Color(255,&nbsp;255,&nbsp;255,&nbsp;50);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.position&nbsp;=&nbsp;bhan[i];</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.color&nbsp;=&nbsp;sf::Color(255,&nbsp;255,&nbsp;255,&nbsp;50);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v1);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v2);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p class="comment">//&nbsp;Header&nbsp;bestanden</p>
+        <p>#include&nbsp;&lt;SFML/Graphics.hpp&gt;&nbsp;<span class="comment">//&nbsp;Bibliotheek&nbsp;voor&nbsp;grafische&nbsp;weergave</span></p>
+        <p>#include&nbsp;&lt;vector&gt;&nbsp;<span class="comment">//&nbsp;Bibliotheek&nbsp;voor&nbsp;vectoren</span></p>
+        <p>#include&nbsp;&lt;cmath&gt;&nbsp;<span class="comment">//&nbsp;Bibliotheek&nbsp;voor&nbsp;wiskundige&nbsp;functies</span></p>
+        <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Private&nbsp;leden</p>
+        <p>private:</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;position;&nbsp;<span class="comment">//&nbsp;Positie&nbsp;van&nbsp;het&nbsp;object</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;velocity;&nbsp;<span class="comment">//&nbsp;Snelheid&nbsp;van&nbsp;het&nbsp;object</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;mass;&nbsp;<span class="comment">//&nbsp;Massa&nbsp;van&nbsp;het&nbsp;object</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;radius;&nbsp;<span class="comment">//&nbsp;Radius&nbsp;van&nbsp;het&nbsp;object</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::CircleShape&nbsp;shape;&nbsp;<span class="comment">//&nbsp;Weergave&nbsp;van&nbsp;het&nbsp;object</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vector2f&gt;&nbsp;baan;&nbsp;<span class="comment">//&nbsp;Traject&nbsp;van&nbsp;het&nbsp;object</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;int&nbsp;maxBaanPunten&nbsp;=&nbsp;1000;&nbsp;<span class="comment">//&nbsp;Maximum&nbsp;aantal&nbsp;punten&nbsp;in&nbsp;het&nbsp;traject</span></p>
+        <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Publieke&nbsp;leden&nbsp;en&nbsp;methoden</p>
+        <p>public:</p>
 
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(lijnen.data(),&nbsp;lijnen.size(),&nbsp;sf::PrimitiveType::Lines);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;getPosition()&nbsp;const&nbsp;{</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;position;&nbsp;<span class="comment">//&nbsp;Retourneer&nbsp;de&nbsp;huidige&nbsp;positie</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody(float&nbsp;x,&nbsp;float&nbsp;y,&nbsp;float&nbsp;m,&nbsp;float&nbsp;r,&nbsp;const&nbsp;sf::Color&amp;&nbsp;kleur)&nbsp;{</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;=&nbsp;sf::Vector2f(x,&nbsp;y);&nbsp;<span class="comment">//&nbsp;Initialiseer&nbsp;positie</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;sf::Vector2f(0.f,&nbsp;0.f);&nbsp;<span class="comment">//&nbsp;Standaard&nbsp;snelheid&nbsp;op&nbsp;nul</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mass&nbsp;=&nbsp;m;&nbsp;<span class="comment">//&nbsp;Stel&nbsp;massa&nbsp;in</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;=&nbsp;r;&nbsp;<span class="comment">//&nbsp;Stel&nbsp;radius&nbsp;in</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setRadius(radius);&nbsp;<span class="comment">//&nbsp;Stel&nbsp;vormradius&nbsp;in</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setFillColor(kleur);&nbsp;<span class="comment">//&nbsp;Stel&nbsp;vormkleur&nbsp;in</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setOrigin(sf::Vector2f(radius,&nbsp;radius));&nbsp;<span class="comment">//&nbsp;Centreer&nbsp;de&nbsp;vorm</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);&nbsp;<span class="comment">//&nbsp;Plaats&nbsp;vorm&nbsp;op&nbsp;positie</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;setSnelheid(const&nbsp;sf::Vector2f&amp;&nbsp;vel)&nbsp;{</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;=&nbsp;vel;&nbsp;<span class="comment">//&nbsp;Stel&nbsp;snelheid&nbsp;in</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;update(const&nbsp;CelestialBody&amp;&nbsp;ander,&nbsp;float&nbsp;dt)&nbsp;{</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;r&nbsp;=&nbsp;ander.position&nbsp;-&nbsp;position;</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;afstand&nbsp;=&nbsp;std::sqrt(r.x&nbsp;*&nbsp;r.x&nbsp;+&nbsp;r.y&nbsp;*&nbsp;r.y);</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;G&nbsp;=&nbsp;6.67430e-11f&nbsp;*&nbsp;1e4f;&nbsp;<span class="comment">//&nbsp;Gravitatieconstante</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(afstand&nbsp;&gt;&nbsp;0.1f)&nbsp;{</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;richting&nbsp;=&nbsp;r&nbsp;/&nbsp;afstand;&nbsp;<span class="comment">// Normaliseer richting</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;kracht&nbsp;=&nbsp;richting&nbsp;*&nbsp;G&nbsp;*&nbsp;mass&nbsp;*&nbsp;ander.mass&nbsp;/&nbsp;(afstand&nbsp;*&nbsp;afstand);&nbsp;<span class="comment">// Bereken kracht</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vector2f&nbsp;versnelling&nbsp;=&nbsp;kracht&nbsp;/&nbsp;mass;&nbsp;<span class="comment">// Bereken versnelling</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocity&nbsp;+=&nbsp;versnelling&nbsp;*&nbsp;dt;&nbsp;<span class="comment">// Update snelheid</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;position&nbsp;+=&nbsp;velocity&nbsp;*&nbsp;dt;&nbsp;<span class="comment">// Update positie</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;shape.setPosition(position);&nbsp;<span class="comment">// Update visuele positie</span></p>
                         
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(shape);</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-                    <p>};</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;bhan.push_back(position);&nbsp;<span class="comment">// Voeg positie toe aan baan</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;maxBaanPunten)&nbsp;{</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bhan.erase(baan.begin());&nbsp;<span class="comment">// Verwijder oudste punt</span></p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                        
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;teken(sf::RenderTarget&amp;&nbsp;doel)&nbsp;const&nbsp;{</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Teken&nbsp;baan</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(baan.size()&nbsp;&gt;&nbsp;1)&nbsp;{</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;sf::Vertex&gt;&nbsp;lijnen;</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.reserve(baan.size()&nbsp;*&nbsp;2);&nbsp;<span class="comment">//&nbsp;Reserveer&nbsp;geheugen&nbsp;voor&nbsp;lijnen</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(size_t&nbsp;i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;bhan.size();&nbsp;++i)&nbsp;{</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Vertex&nbsp;v1,&nbsp;v2;</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.position&nbsp;=&nbsp;baan[i-1];&nbsp;<span class="comment">//&nbsp;Startpunt&nbsp;van&nbsp;de&nbsp;lijn</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1.color&nbsp;=&nbsp;sf::Color(255,&nbsp;255,&nbsp;255,&nbsp;50);&nbsp;<span class="comment">//&nbsp;Kleur&nbsp;van&nbsp;de&nbsp;lijn</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.position&nbsp;=&nbsp;bhan[i];&nbsp;<span class="comment">//&nbsp;Eindpunt&nbsp;van&nbsp;de&nbsp;lijn</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.color&nbsp;=&nbsp;sf::Color(255,&nbsp;255,&nbsp;255,&nbsp;50);&nbsp;<span class="comment">//&nbsp;Kleur&nbsp;van&nbsp;de&nbsp;lijn</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v1);&nbsp;<span class="comment">//&nbsp;Voeg&nbsp;startpunt&nbsp;toe</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lijnen.push_back(v2);&nbsp;<span class="comment">//&nbsp;Voeg&nbsp;eindpunt&nbsp;toe</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                                
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(lijnen.data(),&nbsp;lijnen.size(),&nbsp;sf::PrimitiveType::Lines);&nbsp;<span class="comment">//&nbsp;Teken&nbsp;alle&nbsp;lijnen</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                                
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doel.draw(shape);&nbsp;<span class="comment">//&nbsp;Teken&nbsp;de&nbsp;vorm</span></p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                                <p>};</p>
+                                
 					                <p class="comment">//&nbsp;Hoofdfunctie</p>
                 <p>int&nbsp;main()&nbsp;{</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::RenderWindow&nbsp;window(sf::VideoMode({900u,&nbsp;900u}),&nbsp;"Drie-Lichamen&nbsp;Probleem");</p>
@@ -352,14 +361,14 @@
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa2&nbsp;=&nbsp;1.1e13f;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;massa3&nbsp;=&nbsp;1.1e13f;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;straal&nbsp;=&nbsp;5.0f;</p>
-				                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//rechts</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//linksboven</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//onder</span></p>
+				                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam1(600,&nbsp;400,&nbsp;massa1,&nbsp;straal,&nbsp;sf::Color::Blue);&nbsp;<span class="comment">//Het blauwe balletje op positie (600,400) </span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam2(600,&nbsp;250,&nbsp;massa2,&nbsp;straal,&nbsp;sf::Color::Red);&nbsp;<span class="comment">//Het rode balletje op positie (600,250) </span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CelestialBody&nbsp;lichaam3(600,&nbsp;1600,&nbsp;massa3,&nbsp;straal,&nbsp;sf::Color::Green);&nbsp;<span class="comment">//Het groene balletje op positie (600,1600)</span></p>
+                <br>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>  <span class="comment">het blauwe balletje beweegt enkel naar rechts</span>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p> <span class="comment">het rode balletje beweegt enkel naar rechts en beweegt iets langzamer dan het blauwe balletje</span>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p> <span class="comment">het groene balletje beweegt naar links en naar boven</span>
 
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;Beginsnelheden&nbsp;voor&nbsp;rotatie</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam1.setSnelheid(sf::Vector2f(1020.0f,&nbsp;0.0f));</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam2.setSnelheid(sf::Vector2f(860.0f,&nbsp;0.0f));</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;lichaam3.setSnelheid(sf::Vector2f(900.0f,&nbsp;-100.0f));</p>
 				     <p>&nbsp;&nbsp;&nbsp;&nbsp;sf::Clock&nbsp;klok;</p>
 					                 <p>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(window.isOpen())&nbsp;{</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(auto&nbsp;event&nbsp;=&nbsp;window.pollEvent())&nbsp;{</p>

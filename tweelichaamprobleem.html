@@ -7,7 +7,7 @@
     <title>C++ Uitleg - twee lichamen</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-<body class="uitleg-page">
+<body class="tlp">
     <header class="glas-container">
         <h1>tweelichamen</h1>
         <nav class="main-nav">
@@ -24,58 +24,66 @@
     <section class="glas-container">
 <h3>Volledige code:</h3>
 <div class="cppCode">
-    <p>#include &lt;SFML/Graphics.hpp&gt;</p>
-    <p>#include &lt;iostream&gt;</p>
-    <p>#include &lt;cmath&gt;</p>
+    <p>#include &lt;SFML/Graphics.hpp&gt;&nbsp;<span class="comment">// Bibliotheek voor grafische elementen</span></p>
+    <p>#include &lt;iostream&gt;&nbsp;<span class="comment">// Input/Output-functionaliteit</span></p>
+    <p>#include &lt;cmath&gt;&nbsp;<span class="comment">// Wiskundige functies</span></p>
+    
     <p class="comment">// Constantes</p>
-    <p>const double G = 6.67430e-11;&nbsp;// Gravitatieconstante</p>
-    <p>const double dt = 1e5;&nbsp;// Tijdsinterval</p>
-    <p>struct Vector { double x, y; };</p>
-    <p>struct Body { double mass; Vector position; Vector velocity; sf::CircleShape shape; };</p>
+    <p>const double G = 6.67430e-11;&nbsp;<span class="comment">// Gravitatieconstante</span></p>
+    <p>const double dt = 1e5;&nbsp;<span class="comment">// Tijdstap</span></p>
+    
+    <p>struct Vector { double x, y; };&nbsp;<span class="comment">// Vectorstructuur voor posities en snelheden</span></p>
+    <p>struct Body { double mass; Vector position; Vector velocity; sf::CircleShape shape; };&nbsp;<span class="comment">// Structuur voor een lichaam</span></p>
+    
     <p>void update_velocity(Body &amp;body1, Body &amp;body2) {</p>
-    <p>&nbsp;&nbsp;&nbsp;Vector r = { body2.position.x - body1.position.x, body2.position.y - body1.position.y };</p>
-    <p>&nbsp;&nbsp;&nbsp;double distance = sqrt(r.x * r.x + r.y * r.y);</p>
-    <p>&nbsp;&nbsp;&nbsp;double force = G * body1.mass * body2.mass / (distance * distance);</p>
-    <p>&nbsp;&nbsp;&nbsp;double acceleration1 = force / body1.mass;</p>
-    <p>&nbsp;&nbsp;&nbsp;double acceleration2 = force / body2.mass;</p>
-    <p>&nbsp;&nbsp;&nbsp;body1.velocity.x += acceleration1 * r.x / distance * dt;</p>
-    <p>&nbsp;&nbsp;&nbsp;body1.velocity.y += acceleration1 * r.y / distance * dt;</p>
-    <p>&nbsp;&nbsp;&nbsp;body2.velocity.x -= acceleration2 * r.x / distance * dt;</p>
-    <p>&nbsp;&nbsp;&nbsp;body2.velocity.y -= acceleration2 * r.y / distance * dt;</p>
+    <p>&nbsp;&nbsp;&nbsp;Vector r = { body2.position.x - body1.position.x, body2.position.y - body1.position.y };&nbsp;<span class="comment">// Bereken relatieve positie</span></p>
+    <p>&nbsp;&nbsp;&nbsp;double distance = sqrt(r.x * r.x + r.y * r.y);&nbsp;<span class="comment">// Afstand tussen de lichamen</span></p>
+    <p>&nbsp;&nbsp;&nbsp;double force = G * body1.mass * body2.mass / (distance * distance);&nbsp;<span class="comment">// Gravitatiekracht</span></p>
+    <p>&nbsp;&nbsp;&nbsp;double acceleration1 = force / body1.mass;&nbsp;<span class="comment">// Versnelling voor body1</span></p>
+    <p>&nbsp;&nbsp;&nbsp;double acceleration2 = force / body2.mass;&nbsp;<span class="comment">// Versnelling voor body2</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body1.velocity.x += acceleration1 * r.x / distance * dt;&nbsp;<span class="comment">// Update snelheid van body1 (x-component)</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body1.velocity.y += acceleration1 * r.y / distance * dt;&nbsp;<span class="comment">// Update snelheid van body1 (y-component)</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body2.velocity.x -= acceleration2 * r.x / distance * dt;&nbsp;<span class="comment">// Update snelheid van body2 (x-component)</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body2.velocity.y -= acceleration2 * r.y / distance * dt;&nbsp;<span class="comment">// Update snelheid van body2 (y-component)</span></p>
     <p>}</p>
+    
     <p>void update_position(Body &amp;body) {</p>
-    <p>&nbsp;&nbsp;&nbsp;body.position.x += body.velocity.x * dt;</p>
-    <p>&nbsp;&nbsp;&nbsp;body.position.y += body.velocity.y * dt;</p>
+    <p>&nbsp;&nbsp;&nbsp;body.position.x += body.velocity.x * dt;&nbsp;<span class="comment">// Update positie (x-component)</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body.position.y += body.velocity.y * dt;&nbsp;<span class="comment">// Update positie (y-component)</span></p>
     <p>}</p>
+    
     <p>void update_shape(Body &amp;body) {</p>
-    <p>&nbsp;&nbsp;&nbsp;body.shape.setPosition(static_cast&lt;float&gt;(body.position.x / 1e7), static_cast&lt;float&gt;(body.position.y / 1e7));</p>
+    <p>&nbsp;&nbsp;&nbsp;body.shape.setPosition(static_cast&lt;float&gt;(body.position.x / 1e7), static_cast&lt;float&gt;(body.position.y / 1e7));&nbsp;<span class="comment">// Schaal en update grafische positie</span></p>
     <p>}</p>
+    
     <p>int main() {</p>
-    <p>&nbsp;&nbsp;&nbsp;Body body1 = { 5.972e24, { 0, 0 }, { 0, 0 }, sf::CircleShape(20.f) };&nbsp;// Aarde</p>
-    <p>&nbsp;&nbsp;&nbsp;Body body2 = { 7.348e22, { 384400000, 0 }, { 0, 1022 }, sf::CircleShape(10.f) };&nbsp;// Maan</p>
-    <p>&nbsp;&nbsp;&nbsp;body1.shape.setFillColor(sf::Color::Blue);</p>
-    <p>&nbsp;&nbsp;&nbsp;body2.shape.setFillColor(sf::Color::White);</p>
-    <p>&nbsp;&nbsp;&nbsp;sf::RenderWindow window(sf::VideoMode(800, 600), "Two Body Problem");</p>
+    <p>&nbsp;&nbsp;&nbsp;Body body1 = { 5.972e24, { 0, 0 }, { 0, 0 }, sf::CircleShape(20.f) };&nbsp;<span class="comment">// Aarde</span></p>
+    <p>&nbsp;&nbsp;&nbsp;Body body2 = { 7.348e22, { 384400000, 0 }, { 0, 1022 }, sf::CircleShape(10.f) };&nbsp;<span class="comment">// Maan</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body1.shape.setFillColor(sf::Color::Blue);&nbsp;<span class="comment">// Stel kleur Aarde in</span></p>
+    <p>&nbsp;&nbsp;&nbsp;body2.shape.setFillColor(sf::Color::White);&nbsp;<span class="comment">// Stel kleur Maan in</span></p>
+    <p>&nbsp;&nbsp;&nbsp;sf::RenderWindow window(sf::VideoMode(800, 600), "Two Body Problem");&nbsp;<span class="comment">// Maak een venster</span></p>
+    
     <p>&nbsp;&nbsp;&nbsp;while (window.isOpen()) {</p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf::Event event;</p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (window.pollEvent(event)) {</p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (event.type == sf::Event::Closed) {</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.close();&nbsp;<span class="comment">// Sluit venster</span></p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_velocity(body1, body2);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_velocity(body2, body1);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_position(body1);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_position(body2);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_shape(body1);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_shape(body2);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.clear();</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.draw(body1.shape);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.draw(body2.shape);</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.display();</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_velocity(body1, body2);&nbsp;<span class="comment">// Update snelheid body1</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_velocity(body2, body1);&nbsp;<span class="comment">// Update snelheid body2</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_position(body1);&nbsp;<span class="comment">// Update positie body1</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_position(body2);&nbsp;<span class="comment">// Update positie body2</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_shape(body1);&nbsp;<span class="comment">// Update grafische positie body1</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;update_shape(body2);&nbsp;<span class="comment">// Update grafische positie body2</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.clear();&nbsp;<span class="comment">// Wis het venster</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.draw(body1.shape);&nbsp;<span class="comment">// Teken body1</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.draw(body2.shape);&nbsp;<span class="comment">// Teken body2</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.display();&nbsp;<span class="comment">// Toon inhoud van het venster</span></p>
     <p>&nbsp;&nbsp;&nbsp;}</p>
-    <p>&nbsp;&nbsp;&nbsp;return 0;</p>
-    <p>}</p>    
+    <p>&nbsp;&nbsp;&nbsp;return 0;&nbsp;<span class="comment">// Beëindig programma</span></p>
+    <p>}</p>
+    
         </div>
         <div class="cppUitleg">
             <h3>Uitleg:</h3>

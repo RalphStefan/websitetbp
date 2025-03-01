@@ -24,7 +24,7 @@ body {
 }
 
 /* Pagina achtergronden - elk met eigen afbeelding */
-.video-page, .hoofdpagina, .uitleg-page {
+.video-page, .hoofdpagina, .uitleg-page, .tlp, .dlp {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -35,6 +35,8 @@ body {
 .video-page { background-image: url('./achtergrond/achtergrond1.jpg'); }
 .hoofdpagina { background-image: url('./achtergrond/HicksonCompactGroup40.png'); }
 .uitleg-page { background-image: url('./achtergrond/achtergrond4.png'); }
+.tlp { background-image: url('./achtergrond/achtergrond2.jpg'); }
+.dlp { background-image: url('./achtergrond/achtergrond3.png'); }
 
 /* Glazen container basis - herbruikbaar voor meerdere elementen */
 .glas-container {
